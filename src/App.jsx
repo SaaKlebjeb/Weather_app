@@ -60,13 +60,13 @@ const App = () => {
               WeatherData?(
                 <div className="w-[80%] mx-auto h-full " >
                 <h1 className="font-bold text-lg sm:font-bold sm:text-2xl">{WeatherData.cityName}</h1>
-                 <img className="w-[150px] max-h-[250px] mx-auto object-cover" src="./src/assets/cloudy.gif" alt="cloudy" />
+                 <img className="w-[150px] max-h-[250px] mx-auto object-cover" src="/assets/cloudy.gif" alt="cloudy" />
                  <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">{WeatherData.cloud}°C</h1>
                  <h1 className="font-semibold text-md sm:font-bold sm:text-lg capitalize">Cloudy</h1>
                  <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">Wind speed: {WeatherData.Speed}Km/h</h1>
                 </div>
               ):(
-                <img className="w-full h-full object-center" src='./src/assets/not-found.gif' alt="not_found" />
+                <img className="w-full h-full object-center" src='/assets/not-found.gif' alt="not_found" />
               )
             }
           </div>
