@@ -13,7 +13,7 @@ const App = () => {
   const [City,setCity]=useState('')
   const Search=async(City)=>{
     try {
-      const response=await fetch(`${weather_url}?q=${City}&appid=${API_KEY}`)
+      const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${City}&appid=cba6ed583dcec7b92918bdc82b0784fc`)
     const data=await response.json();
     console.log(data)
     if (data.cod === '404') {
