@@ -66,7 +66,7 @@ const App = () => {
                  <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">Wind speed: {WeatherData.Speed}Km/h</h1>
                 </div>
               ):(
-                <img className="w-full h-full object-center" src='/assets/not-found.gif' alt="not_found" />
+                <img className="w-full h-full object-cover bg-center" src='/assets/not-found.gif' alt="not_found" />
               )
             }
           </div>
