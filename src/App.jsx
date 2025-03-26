@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Hourlyforcast from "./Hourlyforcast"
 
 const weather_url=import.meta.env.VITE_APP_WEATHER_API;
 const API_KEY=import.meta.env.VITE_APP_API_KEY;
@@ -8,12 +7,13 @@ const App = () => {
   const [WeatherData,setWeatherData]=useState({
     cityName:"Phnom Penh",
     cloud:40,
-    Speed:4.5
+    Speed:4.5,
+    Humidity:27,
   });
   const [City,setCity]=useState('')
   const Search=async(City)=>{
     try {
-      const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${City}&appid=cba6ed583dcec7b92918bdc82b0784fc`)
+      const response=await fetch(`${weather_url}?q=${City}&appid=${API_KEY}`)
     const data=await response.json();
     console.log(data)
     if (data.cod === '404') {
@@ -25,6 +25,7 @@ const App = () => {
         cityName: data.name,
         cloud: data.clouds.all,
         Speed: data.wind.speed,
+        Humidity:data.main.humidity
       });
       setCity('')
     } 
@@ -38,7 +39,7 @@ const App = () => {
   return (
     <div className='h-screen flex justify-center items-center bg-green-200 '>
       {/* card container */}
-      <div className="bg-white rounded-xl w-[50%] h-auto p-2">
+      <div className="bg-white rounded-xl w-[70%] sm:w-[60%] md:w-[50%] h-[400px] px-3 py-5">
           <div className="flex w-[90%] h-auto mx-auto justify-between items-center p-2 ">
             {/* input field and search button*/}
               <input 
@@ -61,16 +62,19 @@ const App = () => {
                 <div className="w-[80%] mx-auto h-full " >
                 <h1 className="font-bold text-lg sm:font-bold sm:text-2xl">{WeatherData.cityName}</h1>
                  <img className="w-[150px] max-h-[250px] mx-auto object-cover" src="/assets/cloudy.gif" alt="cloudy" />
-                 <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">{WeatherData.cloud}°C</h1>
-                 <h1 className="font-semibold text-md sm:font-bold sm:text-lg capitalize">Cloudy</h1>
-                 <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">Wind speed: {WeatherData.Speed}Km/h</h1>
+                 <h1 className="font-semibold text-3xl sm:font-bold sm:text-5xl ">{WeatherData.cloud}°C</h1>
+                 <div className="w-full px-2 py-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  ">
+                  <h1  className="font-semibold text-md sm:font-bold sm:text-lg ">Humidity:{WeatherData.Humidity}%</h1>
+                  <h1 className="font-semibold text-md sm:font-bold sm:text-lg ">Wind speed: {WeatherData.Speed}Km/h</h1>
+                 </div>
                 </div>
               ):(
                 <img className="w-full h-full object-cover bg-center" src='/assets/not-found.gif' alt="not_found" />
               )
             }
           </div>
-          <Hourlyforcast/>
+
+          {/* <Hourlyforcast/> */}
           
       </div>
     </div>
